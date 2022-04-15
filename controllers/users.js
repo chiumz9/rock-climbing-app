@@ -3,7 +3,6 @@ import { config } from "../config/config.js";
 import User from "../models/user.js";
 
 export const signUp = (req, res) => {
-  console.log(req.body);
   if (req.body.name && req.body.email && req.body.password) {
     let newUser = {
       name: req.body.name,
