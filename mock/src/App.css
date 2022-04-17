@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+.top{
+  background-color: green;
+}
+
+.hello{
+  text-align: left;
+  color: white;
+  margin-left: 30px;
+}
