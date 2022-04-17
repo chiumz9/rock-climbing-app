@@ -1,17 +1,9 @@
 import React, { useState } from 'react'
-import axios from 'axios'
+import axios from "axios"
 
-
-
-export default function SignUp() {
-  const [name, setName] = useState("")
+export default function SignIn() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
-  const handleNameChange = (e) => {
-    setName(e.target.value)
-    
-  }
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value)
@@ -21,31 +13,25 @@ export default function SignUp() {
     setPassword(e.target.value)
   }
 
-  const handleSignUp = (e) => {
+  const handleLogIn = (e) => {
     e.preventDefault()
     //use this for deployed database
-    // .post("https://rock-climbing-api.herokuapp.com/api/signup"
+    // .post("https://rock-climbing-api.herokuapp.com/api/login"
     axios
-      .post("http://localhost:3000/api/signup", {
-      "name": name,
-      "email": email,
-      "password": password,
+      .post("http://localhost:3000/api/login", {
+        "email": email,
+        "password": password,
       })
       .then((res) => {
         localStorage.token = res.data.token
       })
-      .catch((err)=>{console.log(err)})
-    
-  
+      .catch((err) => { console.log(err) })
   }
+
   return (
     <div>
-      <h1>Sign Up</h1>
+        <h1>Sign In</h1>
       <form>
-        <div>
-          <label htmlFor='name'>Name </label>
-          <input type='text' name="name" onChange={handleNameChange}/>
-        </div>
         <div>
           <label htmlFor='email'>Email </label>
           <input type='text' name="email" onChange={handleEmailChange}/>
@@ -55,7 +41,7 @@ export default function SignUp() {
           <input type='password' name="email" onChange={handlePasswordChange}/>
         </div>
         <div>
-          <input type='submit' value="Submit" onClick={handleSignUp}/>
+          <input type='submit' value="Submit" onClick={handleLogIn}/>
         </div>
       </form>
     </div>
