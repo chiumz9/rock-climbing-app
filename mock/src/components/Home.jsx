@@ -1,21 +1,21 @@
 import { useState, useEffect } from 'react'
 import NavBar from './NavBar'
 
-
-export default function Home() {
+export default function Home({signedIn, userName}) {
   const [user, setUser] = useState("")
-  const [userSignedIn, setUserSignedIn] = useState(false)
+  
   //need to import username if signed in.
   //need to use effect to change the page when user signed in
   useEffect(() => {
-    setUser("Stacey")
-  }, [userSignedIn])
+    setUser(userName)
+  }, [userName])
+
 
   return (
     <div className='top-container'>
       <header className='top'>
-        <h1 className='hello'>Hello {user ? ", " + user : null}</h1>
-        <NavBar />
+        <h1 className='hello'>Hello {signedIn ? ", " + user : null}</h1>
+        <NavBar/>
       </header>
     </div>
   )
