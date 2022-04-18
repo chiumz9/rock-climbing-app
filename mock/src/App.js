@@ -36,7 +36,7 @@ function App() {
         localStorage.token = res.data.token;
         const test = jwt_decode(res.data.token);
         console.log(test);
-        setUserName(res.data.name);
+        setUserName(test.name);
       })
       .catch((err) => {
         console.log(err);

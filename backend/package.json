@@ -1,7 +1,9 @@
 {
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "db:seed": "node seed/data.js"
   },
   "dependencies": {
     "chalk": "^5.0.1",
@@ -12,9 +14,11 @@
     "mock": "^0.1.1",
     "mongoose": "^6.2.11",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.15",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }

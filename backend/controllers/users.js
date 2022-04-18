@@ -1,6 +1,6 @@
 import jwt from "jwt-simple";
 import { config } from "../config/config.js";
-import User from "./models/user.js";
+import User from "../models/user.js";
 
 export const signUp = (req, res) => {
   if (req.body.name && req.body.email && req.body.password) {
@@ -34,27 +34,26 @@ export const signUp = (req, res) => {
 };
 
 export const logIn = (req, res) => {
-  console.log("hi");
-  // if (req.body.email && req.body.password) {
-  //   User.findOne({ email: req.body.email }).then((user) => {
-  //     if (user) {
-  //       if (user.password === req.body.password) {
-  //         var payload = {
-  //           id: user.id,
-  //           name: user.name,
-  //         };
-  //         var token = jwt.encode(payload, config.jwtSecret);
-  //         res.json({
-  //           token: token,
-  //         });
-  //       } else {
-  //         res.sendStatus(401);
-  //       }
-  //     } else {
-  //       res.sendStatus(401);
-  //     }
-  //   });
-  // } else {
-  //   res.sendStatus(401);
-  // }
+  if (req.body.email && req.body.password) {
+    User.findOne({ email: req.body.email }).then((user) => {
+      if (user) {
+        if (user.password === req.body.password) {
+          var payload = {
+            id: user.id,
+            name: user.name,
+          };
+          var token = jwt.encode(payload, config.jwtSecret);
+          res.json({
+            token: token,
+          });
+        } else {
+          res.sendStatus(401);
+        }
+      } else {
+        res.sendStatus(401);
+      }
+    });
+  } else {
+    res.sendStatus(401);
+  }
 };
