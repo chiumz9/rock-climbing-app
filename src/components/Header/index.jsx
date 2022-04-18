@@ -15,7 +15,6 @@ export default function Header({ children, userName, signedIn}) {
       <Logo title="Peak Scout Logo">Peak Scout</Logo>
     </A>
   { children }
-      <h1>Hello {signedIn ? ", " + userName : null}</h1>
   </HeaderContainer >
   )
 

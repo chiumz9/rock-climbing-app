@@ -12,12 +12,21 @@ export const Container = styled.div`
   }
 `
 
-export const H2 = styled.h2`
+export const H1 = styled.h1`
   font-size: 42px;
   margin: 0 0 10px 0;
 
   @media (max-width: 800px) {
     font-size: 32px;
+  }
+`
+
+export const H2 = styled.h2`
+  font-size: 32px;
+  margin: 0 0 10px 0;
+
+  @media (max-width: 800px) {
+    font-size: 22px;
   }
 `
 export const GymList = styled.div`

@@ -1,9 +1,9 @@
 import React, {useRef, useEffect, useState} from 'react'
 import {debounce} from 'lodash-es'
-import { Container, H2, GymList, Wrapper } from './styles'
+import { Container, H1, H2, GymList, Wrapper } from './styles'
 import Gym from '../Gym'
 
-const GymContainer = ({gyms, pickGym, isPanelOpen, title}) => {
+const GymContainer = ({gyms, pickGym, isPanelOpen, title, userName, signedIn}) => {
   const [scroll, setScroll] = useState(0);
   const prevPanelState = useRef(false)
 
@@ -43,6 +43,7 @@ const GymContainer = ({gyms, pickGym, isPanelOpen, title}) => {
 
   return (
   <Container $isPanelOpen={isPanelOpen} $top={scroll}>
+      <H1>Hello, {signedIn ? userName : null}</H1>     
       <H2>{title}</H2>
     <Wrapper>
     <GymList>

@@ -28,7 +28,7 @@ const App = () => {
         const gyms = await response.json()
         setGyms(gyms)    
         //need to set filteredGyms or else page will render empty
-       setFilteredGyms(gyms)
+        setFilteredGyms(gyms)
      } catch (errors) {
        console.error(errors, "error" )
     }
@@ -127,17 +127,16 @@ fetchData()
   return (
   <>
     <GlobalStyle />
-      <Header
-        userName={userName}
-        signedIn={signedIn}
-      >
+      <Header >
+         <NavBar/>
         <Search filterGyms={filterGyms} />
-        <NavBar/>
       </Header>
-    <GymContainer
+      <GymContainer
         gyms={filteredGyms}
         pickGym={pickGym}
         isPanelOpen={showPanel}
+        userName={userName}
+        signedIn={signedIn}
         title={hasFiltered ? 'Search results' : "All Gyms"} />
      <Transition in={showPanel} timeout={300}>
         {(state) => <DetailPanel gym={selectedGym} closePanel={closePanel} state={state}/>}
