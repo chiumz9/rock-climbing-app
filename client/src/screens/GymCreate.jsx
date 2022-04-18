@@ -7,12 +7,12 @@ export default function GymCreate() {
   const [gym, setGym] = useState({
     name: "",
     location: 
-      { fullAddress: "",
-        address: "",
-        city: "",
-        state: "",
-        zipcode: ""
-      },
+    { fullAddress: "",
+      address: "",
+      city: "",
+      state: "",
+      zipcode: ""
+    },
     phoneNumber: "",
     image: "",
     oneDayPass: "",
@@ -39,7 +39,8 @@ export default function GymCreate() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="Create-Container" onSubmit={handleSubmit}>
+      <h1>New Gym</h1>
       <input
         placeholder="name"
         name="name"

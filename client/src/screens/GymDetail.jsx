@@ -17,7 +17,7 @@ export default function GymDetail() {
   }, [id])
 
   return (
-    <div>
+    <div className="Detail-Container">
       <h2>{gym.name}</h2>
       <p>contact: {gym.phoneNumber}</p>
       <p>day-pass: $ {gym.oneDayPass}</p>
@@ -27,8 +27,8 @@ export default function GymDetail() {
       <p>{gym.bouldering}</p>
       <p>{gym.topRoping}</p>
       <p>{gym.url}</p>
-      <p>{gym.location}</p>
-      <img src={gym.image}/>
+      <p>{gym.location?.fullAddress}</p>
+      <img className="image" src={gym.image}/>
       <div>
         <button>
           <Link to={`/gyms/${gym._id}/edit`}>Edit Gym</Link>

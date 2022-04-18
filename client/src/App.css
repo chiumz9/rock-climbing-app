@@ -1,12 +1,22 @@
-.App {
-  text-align: center;
+.image{
+  max-width: 50vw;
+  max-height: 80vh;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Detail-Container{
+  text-align:center;
 }
-
+.Edit-Container{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+input{
+  background-color: lightgrey;
+}
+button{
+  background-color: red;
+}
+ 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
