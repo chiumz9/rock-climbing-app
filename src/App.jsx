@@ -127,17 +127,16 @@ fetchData()
   return (
   <>
     <GlobalStyle />
-      <Header
-        userName={userName}
-        signedIn={signedIn}
-      >
+      <Header>
+         <NavBar/>
         <Search filterGyms={filterGyms} />
-        <NavBar/>
       </Header>
     <GymContainer
         gyms={filteredGyms}
         pickGym={pickGym}
         isPanelOpen={showPanel}
+        userName={userName}
+        signedIn={signedIn}
         title={hasFiltered ? 'Search results' : "All Gyms"} />
      <Transition in={showPanel} timeout={300}>
         {(state) => <DetailPanel gym={selectedGym} closePanel={closePanel} state={state}/>}
