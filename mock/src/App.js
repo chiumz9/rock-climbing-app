@@ -14,6 +14,32 @@ function App() {
   const [signedIn, setSignedIn] = useState(false);
   const [userName, setUserName] = useState("");
 
+  const [name, setName] = useState("");
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    setSignedIn(true);
+    setUserName(name);
+    //use this for deployed database
+    // .post("https://rock-climbing-api.herokuapp.com/api/signup"
+    axios
+      .post("http://localhost:3000/api/signup", {
+        name: name,
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        localStorage.token = res.data.token;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -35,7 +61,6 @@ function App() {
       .then((res) => {
         localStorage.token = res.data.token;
         const test = jwt_decode(res.data.token);
-        console.log(test);
         setUserName(test.name);
       })
       .catch((err) => {
@@ -47,7 +72,17 @@ function App() {
     <div className="App">
       <Home signedIn={signedIn} userName={userName} />
       <Routes>
-        <Route path="/signUp" element={<SignUp />} />
+        <Route
+          path="/signUp"
+          element={
+            <SignUp
+              handleNameChange={handleNameChange}
+              handleEmailChange={handleEmailChange}
+              handlePasswordChange={handlePasswordChange}
+              handleSignUp={handleSignUp}
+            />
+          }
+        />
         <Route
           path="/signIn"
           element={
@@ -58,7 +93,10 @@ function App() {
             />
           }
         />
-        <Route path="/signOut" element={<SignOut />} />
+        <Route
+          path="/signOut"
+          element={<SignOut setSignedIn={setSignedIn} />}
+        />
       </Routes>
     </div>
   );

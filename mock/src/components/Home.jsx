@@ -14,7 +14,7 @@ export default function Home({signedIn, userName}) {
   return (
     <div className='top-container'>
       <header className='top'>
-        <h1 className='hello'>Hello {signedIn ? ", " + user : null}</h1>
+        <h1 className='hello'>Hello {signedIn ? ", " + userName : null}</h1>
         <NavBar/>
       </header>
     </div>

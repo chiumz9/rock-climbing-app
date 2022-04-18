@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function SignOut() {
+export default function SignOut({setSignedIn}) {
 
   const handleLogOut = (e) => { 
     e.preventDefault()
+    setSignedIn(false)
     //want to set logged out status here
     localStorage.clear()
   }
