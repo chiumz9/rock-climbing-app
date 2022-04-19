@@ -20,7 +20,7 @@ const App = () => {
   const [gyms, setGyms] = useState([])
   const [selectedGym, setSelectedGym] = useState(null)
   const [showPanel, setShowPanel] = useState(false)
-  const [showGymContainer, setShowGymContainer] = useState(false)
+  const [showSignUp, setSignUp] = useState(true)
   const [filteredGyms, setFilteredGyms] = useState([])
   
   useEffect(() => {
@@ -84,11 +84,19 @@ const App = () => {
     setName(e.target.value);
   };
 
+  // const signedUp = () => {
+  //   setShowSignedUp(false)
+  // }
+
+  // const notSignedUp = () => {
+  //   setShowSignedUp(true)
+  // }
+
   const handleSignUp = (e) => {
     e.preventDefault();
     setSignedIn(true);
     setUserName(name);
-    setShowGymContainer(null)
+  //  signedUp();
 
 
     axios
@@ -172,6 +180,7 @@ const App = () => {
                 handleEmailChange={handleEmailChange}
                 handlePasswordChange={handlePasswordChange}
                 handleLogIn={handleLogIn}
+
               />
             }
           />
