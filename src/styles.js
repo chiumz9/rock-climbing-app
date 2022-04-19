@@ -50,3 +50,17 @@ position: relative;
   transform: rotate(-45deg);
 }
 `
+
+export const Button = styled.button`
+  font-family: 'Work Sans', sans-serif;
+  font-size: 20px;
+  background: none;
+  color: #FFCD01;
+  border: none;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #FFCD01;
+    color: #014421;
+  }
+`

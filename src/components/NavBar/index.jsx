@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom"
-import { Button, Wrapper } from "./styles"
+import {Wrapper } from "./styles"
+import {Button} from '../../styles'
 
 export default function NavBar() {
   const handleClick = () => {

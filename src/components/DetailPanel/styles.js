@@ -76,4 +76,12 @@ export const URL = styled.a`
   } 
 `
 
+export const ButtonWrapper = styled.div`
+  display: flex; 
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  height: 40px;
+  margin-top: 20px;
 
+`
