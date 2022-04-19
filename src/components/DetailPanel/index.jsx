@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react'
-import { Panel, P, CloseWrapper, BG, URL} from './styles'
-import {Close} from '../../styles'
+import { Panel, P, CloseWrapper, BG, URL, ButtonWrapper} from './styles'
+import {Close, Button} from '../../styles'
 import Gym from '../Gym'
 import { deleteGym, getGym } from '../../cruds/services/gyms.js';
 import { Link, useParams, useNavigate, Routes, Route } from "react-router-dom";
@@ -37,19 +37,20 @@ const DetailPanel = ({ gym, closePanel, state }) => {
             <P>Auto Belay? {gym.autoBelay ? "✅" : "🚫"}</P>
             <P>Bouldering? {gym.bouldering ? "✅" : "🚫"}</P>
             <P>Top Roping? {gym.topRoping ? "✅" : "🚫"}</P>
-            <P><a style={{textDecoration: 'none'}}
-              href={gym.url}><URL>Gym website: {gym.url}</URL></a></P>
+            <P><a style={{textDecoration: 'none', color: "#FFCD01"}}
+              href={gym.url}>Gym website: <URL>{gym.url}</URL></a></P>
             <P>{gym.location?.fullAddress}</P>
             <Routes>
             <Route path="/gyms/:id/edit" element={<GymEdit/>}/>
               </Routes>
-            <button>
-              <Link to={`/gyms/${gym._id}/edit`}>Edit Gym</Link>
-            </button>
-            <button onClick={() => {
+            <ButtonWrapper>
+              <Link to={`/gyms/${gym._id}/edit`}><Button>Edit Gym</Button></Link>
+            
+            <Button onClick={() => {
               deleteGym(gym._id)
               navigate("/gyms", { replace: true })
-            }}>Delete Gym</button>
+              }}>Delete Gym</Button>
+              </ButtonWrapper>
           </>
         )}
       </Panel>
