@@ -21,6 +21,7 @@ const App = () => {
   const [selectedGym, setSelectedGym] = useState(null)
   const [showPanel, setShowPanel] = useState(false)
   const [filteredGyms, setFilteredGyms] = useState([])
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,7 +48,6 @@ const App = () => {
     setShowPanel(false)
   }
 
-
   const filterGyms = (searchTerm) => {
     //Convert the array and the input to lowercase & string to make non-case-sensitive
     const stringSearch = (gymAttribute, searchTerm) => 
@@ -58,11 +58,16 @@ const App = () => {
     if (!searchTerm) {
       setFilteredGyms(gyms)
     } else {
-      setFilteredGyms( gyms.filter((gym) => stringSearch(gym.name, searchTerm) || stringSearch(gym.location.address, searchTerm)
+      setFilteredGyms(
+        gyms.filter(
+          (gym) => stringSearch(gym.name, searchTerm) || stringSearch(gym.location.city, searchTerm)
       )
       )
     }
   }
+  // Conditionally Render Title for Gym Container
+  // Compares the length of the filteredGyms array and the gyms array... if they do not === one another, filter has happened
+  const hasFiltered = filteredGyms.length !== gyms.length
 
   //sign in process
   const [email, setEmail] = useState("");
@@ -128,9 +133,7 @@ const App = () => {
     "justify-content": "center",
   }
 
-  // Conditionally Render Title for Gym Container
-  // Compares the length of the filteredGyms array and the gyms array... if they do not === one another, filter has happened
-  const hasFiltered = filteredGyms !== gyms.length
+  
   return (
     <div clasName="App-Background">
       <GlobalStyle />
