@@ -131,12 +131,7 @@ const App = () => {
         console.log(err);
       });
   };
-  const RouteStyle={
-    "background-color" : '#FFCD01',
-    "padding-top" : '100px',
-    "display": "flex",
-    "justify-content": "center",
-  }
+ 
 
   
   return (
@@ -146,8 +141,19 @@ const App = () => {
         <NavBar/>
         <Search filterGyms={filterGyms} />
       </Header>
-      <div className="Routes" style={RouteStyle}>
+      <div className="Routes">
         <Routes>
+        <Route
+            path="/"
+            element={
+              <SignUp
+                handleNameChange={handleNameChange}
+                handleEmailChange={handleEmailChange}
+                handlePasswordChange={handlePasswordChange}
+                handleSignUp={handleSignUp}
+              />
+            }
+          />
           <Route
             path="/signUp"
             element={
@@ -168,6 +174,12 @@ const App = () => {
                 handleLogIn={handleLogIn}
               />
             }
+          />
+           <Route
+            path="/gyms"
+            element={<GymContainer />}
+              
+            
           />
           <Route
             path="/signOut"
