@@ -33,8 +33,8 @@ const DetailPanel = ({ gym, closePanel, state }) => {
       <P>Auto Belay? {gym.autoBelay ? "✅" : "🚫"}</P>
       <P>Bouldering? {gym.bouldering ? "✅" : "🚫"}</P>
       <P>Top Roping? {gym.topRoping ? "✅" : "🚫"}</P>
-            <P><a style={{textDecoration: 'none'}}
-              href={gym.url}><URL>Gym website: {gym.url}</URL></a></P>
+      <P><a style={{ textDecoration: 'none',  color: "#FFCD01"}}
+              href={gym.url}>Gym website: <URL>{gym.url}</URL></a></P>
       <P>{gym.location?.fullAddress}</P>
         </>
       )}
