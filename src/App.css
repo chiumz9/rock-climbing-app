@@ -9,16 +9,7 @@
   margin-top: 20px;
   color: #FFCD01;
 }
-input{
-  background-color: #b37a4c;
-  padding: 4px;
-  gap: 10px 0;
-  box-sizing: border-box;
-  border: 2px solid black;
-  margin-bottom: 5px;
-  
 
-}
 ::placeholder {
   color: black;
 }

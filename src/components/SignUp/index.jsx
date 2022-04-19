@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react'
-import { Container, H1, FormContainer, Label, H3, SignUpHeader, Button } from "./styles"
+import { Container, H1, FormContainer, Label, H3, SignUpHeader, Button, SignInput } from "./styles"
 
 
 export default function SignUp({ handleNameChange, handleEmailChange, handlePasswordChange, handleSignUp }) {
@@ -16,15 +16,15 @@ export default function SignUp({ handleNameChange, handleEmailChange, handlePass
             
         <div>
           <Label><label htmlFor='name'>Name </label></Label>
-          <input type='text' name="name" onChange={handleNameChange}/>
+          <SignInput type='text' name="name" onChange={handleNameChange}/>
         </div>
         <div>
           <Label><label htmlFor='email'>Email </label></Label>
-          <input type='text' name="email" onChange={handleEmailChange}/>
+          <SignInput type='text' name="email" onChange={handleEmailChange}/>
         </div>
         <div>
         <Label> <label htmlFor='password'>Password </label> </Label>
-         <input type='password' name="email" onChange={handlePasswordChange}/>
+         <SignInput type='password' name="email" onChange={handlePasswordChange}/>
         </div>
         <div>
         <Button type='submit' value="Submit" onSubmit={handleSignUp}>Submit</Button>

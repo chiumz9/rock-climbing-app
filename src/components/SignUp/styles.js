@@ -20,6 +20,7 @@ export const H1 = styled.h1`
 font-size: 42px;
 margin: 0 0 10px 0;
 display: block;
+color: #014421;
 
 @media (max-width: 800px) {
   font-size: 32px;
@@ -29,6 +30,7 @@ display: block;
 export const H2 = styled.h2`
 font-size: 32px;
 margin: 0 0 10px 0;
+color: #014421;
 
 @media (max-width: 800px) {
   font-size: 22px;
@@ -39,6 +41,8 @@ export const H3 = styled.h3`
   margin: 0 0 20px 0;
   width: 35%;
   text-align: center;
+  color: #014421;
+
   @media (max-width: 800px) {
     font-size: 12.95px;
   }
@@ -56,6 +60,7 @@ export const Label = styled.div`
   flex-direction: row;
   justify-content: left;
   align-items: center;
+  color: #014421;
 
 `
 export const SignUpHeader = styled.header`
@@ -70,12 +75,22 @@ export const SignUpHeader = styled.header`
 
 export const Button = styled.button`
   border-radius: 15px;
-  height: 25px;
+  height: 27px;
   width: 75%;
   margin-top: 15px;
   background-color: #FFCD01;
   color: black;
   margin-left: 18px;
-  font-family: Work Sans, sans-serif 
+  font-family: Work Sans, sans-serif;
+  text-align: center;
 `
 
+export const SignInput = styled.input`
+  background-color: #fffff0;
+  padding: 4px;
+  gap: 10px 0;
+  box-sizing: border-box;
+  border: 2px solid #014421;
+  margin-bottom: 5px;
+  
+`
