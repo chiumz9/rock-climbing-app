@@ -3,7 +3,7 @@ import {debounce} from 'lodash-es'
 import { Container, H1, H2, GymList, Wrapper } from './styles'
 import Gym from '../Gym'
 
-const GymContainer = ({gyms, pickGym, isPanelOpen, title, userName, signedIn}) => {
+const GymContainer = ({gyms, pickGym, isPanelOpen, title, userName, signedIn, isSignUpOpen}) => {
   const [scroll, setScroll] = useState(0);
   const prevPanelState = useRef(false)
 
@@ -48,7 +48,7 @@ const GymContainer = ({gyms, pickGym, isPanelOpen, title, userName, signedIn}) =
   }
 
   return (
-  <Container style={GymContainerCss} $isPanelOpen={isPanelOpen} $top={scroll}>
+  <Container style={GymContainerCss} $isPanelOpen={isPanelOpen} $top={scroll} >
       <H1>Hello {signedIn ? ", " + userName : null}</H1>     
       <H2>{title}</H2>
     <Wrapper>

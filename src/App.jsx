@@ -9,7 +9,7 @@ import NavBar from './components/NavBar';
 import jwt_decode from "jwt-decode"
 import axios from "axios"
 import { Routes, Route } from "react-router-dom"
-import SignUp from './components/SignUp';
+import SignUp from './components/SignUp'
 import SignOut from './components/SignOut';
 import SignIn from './components/SignIn';
 import GymEdit from './cruds/screens/GymEdit.jsx'
@@ -20,6 +20,7 @@ const App = () => {
   const [gyms, setGyms] = useState([])
   const [selectedGym, setSelectedGym] = useState(null)
   const [showPanel, setShowPanel] = useState(false)
+  const [showGymContainer, setShowGymContainer] = useState(false)
   const [filteredGyms, setFilteredGyms] = useState([])
   
   useEffect(() => {
@@ -48,6 +49,8 @@ const App = () => {
     setShowPanel(false)
   }
 
+ 
+
   const filterGyms = (searchTerm) => {
     //Convert the array and the input to lowercase & string to make non-case-sensitive
     const stringSearch = (gymAttribute, searchTerm) => 
@@ -60,7 +63,7 @@ const App = () => {
     } else {
       setFilteredGyms(
         gyms.filter(
-          (gym) => stringSearch(gym.name, searchTerm) || stringSearch(gym.location.city, searchTerm)
+          (gym) => stringSearch(gym.name, searchTerm) || stringSearch(gym.location.city, searchTerm || stringSearch(gym.autoBelay, searchTerm))
       )
       )
     }
@@ -85,6 +88,8 @@ const App = () => {
     e.preventDefault();
     setSignedIn(true);
     setUserName(name);
+    setShowGymContainer(null)
+
 
     axios
       .post("https://rock-climbing-api.herokuapp.com/api/signup", {
@@ -170,13 +175,13 @@ const App = () => {
           />
         </Routes>
       </div>
-      <GymContainer
+      {signedIn && <GymContainer
         gyms={filteredGyms}
         pickGym={pickGym}
         isPanelOpen={showPanel}
         userName={userName}
         signedIn={signedIn}
-        title={hasFiltered ? 'Search results' : "All Gyms"} />
+        title={hasFiltered ? 'Search results' : "All Gyms"} />}
       <Transition in={showPanel} timeout={300}>
         {(state) => <DetailPanel gym={selectedGym} closePanel={closePanel} state={state}/>}
       </Transition>

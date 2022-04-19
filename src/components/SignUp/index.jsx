@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react'
 import { Container, H1, FormContainer, Label, H3, SignUpHeader, Button, SignInput } from "./styles"
 
 
-export default function SignUp({ handleNameChange, handleEmailChange, handlePasswordChange, handleSignUp }) {
+const SignUp = ({ handleNameChange, handleEmailChange, handlePasswordChange, handleSignUp}) => {
 
   return (
     <>
@@ -36,3 +36,4 @@ export default function SignUp({ handleNameChange, handleEmailChange, handlePass
     </>
   )
 }
+export default SignUp
