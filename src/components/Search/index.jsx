@@ -28,7 +28,12 @@ const Search = ({ filterGyms }) => {
     <Wrapper>
       <SearchContainer $showOnDesktop={showOnDesktop}>
         <Icon onClick={showSearch}/>
-        <Input ref={inputEl} type="text" name="Search" autoComplete="off" onChange={handleChange} />
+        <Input 
+          ref={inputEl} 
+          type="text" 
+          name="Search" 
+          autoComplete="off" 
+          onChange={handleChange} />
         <Close onClick={clearSearch}/>
       </SearchContainer>
    </Wrapper>

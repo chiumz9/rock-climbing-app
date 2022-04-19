@@ -12,7 +12,8 @@ import { Routes, Route } from "react-router-dom"
 import SignUp from './components/SignUp';
 import SignOut from './components/SignOut';
 import SignIn from './components/SignIn';
-
+import GymEdit from './cruds/screens/GymEdit.jsx'
+import "./App.css"
 
 
 const App = () => {
@@ -22,19 +23,19 @@ const App = () => {
   const [filteredGyms, setFilteredGyms] = useState([])
   useEffect(() => {
     const fetchData = async () => {
-     try {
+      try {
         const response = await fetch('https://rock-climbing-api.herokuapp.com/api/gyms')
-        
+
         const gyms = await response.json()
         setGyms(gyms)    
         //need to set filteredGyms or else page will render empty
         setFilteredGyms(gyms)
-     } catch (errors) {
-       console.error(errors, "error" )
+      } catch (errors) {
+        console.error(errors, "error" )
+      }
     }
-    }
-    
-fetchData()
+
+    fetchData()
   }, [])
 
   const pickGym = (gym) => {
@@ -46,9 +47,9 @@ fetchData()
     setShowPanel(false)
   }
 
-  
+
   const filterGyms = (searchTerm) => {
-//Convert the array and the input to lowercase & string to make non-case-sensitive
+    //Convert the array and the input to lowercase & string to make non-case-sensitive
     const stringSearch = (gymAttribute, searchTerm) => 
       gymAttribute.toLowerCase().includes(searchTerm.toLowerCase())
 
@@ -79,7 +80,7 @@ fetchData()
     e.preventDefault();
     setSignedIn(true);
     setUserName(name);
-  
+
     axios
       .post("https://rock-climbing-api.herokuapp.com/api/signup", {
         name: name,
@@ -120,17 +121,52 @@ fetchData()
         console.log(err);
       });
   };
+  const RouteStyle={
+    "background-color" : '#FFCD01',
+    "padding-top" : '100px',
+    "display": "flex",
+    "justify-content": "center",
+  }
 
   // Conditionally Render Title for Gym Container
   // Compares the length of the filteredGyms array and the gyms array... if they do not === one another, filter has happened
   const hasFiltered = filteredGyms !== gyms.length
   return (
-  <>
-    <GlobalStyle />
+    <div clasName="App-Background">
+      <GlobalStyle />
       <Header >
-         <NavBar/>
+        <NavBar/>
         <Search filterGyms={filterGyms} />
       </Header>
+      <div className="Routes" style={RouteStyle}>
+        <Routes>
+          <Route
+            path="/signUp"
+            element={
+              <SignUp
+                handleNameChange={handleNameChange}
+                handleEmailChange={handleEmailChange}
+                handlePasswordChange={handlePasswordChange}
+                handleSignUp={handleSignUp}
+              />
+            }
+          />
+          <Route
+            path="/signIn"
+            element={
+              <SignIn
+                handleEmailChange={handleEmailChange}
+                handlePasswordChange={handlePasswordChange}
+                handleLogIn={handleLogIn}
+              />
+            }
+          />
+          <Route
+            path="/signOut"
+            element={<SignOut setSignedIn={setSignedIn} />}
+          />
+        </Routes>
+      </div>
       <GymContainer
         gyms={filteredGyms}
         pickGym={pickGym}
@@ -138,37 +174,11 @@ fetchData()
         userName={userName}
         signedIn={signedIn}
         title={hasFiltered ? 'Search results' : "All Gyms"} />
-     <Transition in={showPanel} timeout={300}>
+      <Transition in={showPanel} timeout={300}>
         {(state) => <DetailPanel gym={selectedGym} closePanel={closePanel} state={state}/>}
       </Transition>
-      <Routes>
-        <Route
-          path="/signUp"
-          element={
-            <SignUp
-              handleNameChange={handleNameChange}
-              handleEmailChange={handleEmailChange}
-              handlePasswordChange={handlePasswordChange}
-              handleSignUp={handleSignUp}
-            />
-          }
-        />
-        <Route
-          path="/signIn"
-          element={
-            <SignIn
-              handleEmailChange={handleEmailChange}
-              handlePasswordChange={handlePasswordChange}
-              handleLogIn={handleLogIn}
-            />
-          }
-        />
-        <Route
-          path="/signOut"
-          element={<SignOut setSignedIn={setSignedIn} />}
-        />
-      </Routes>
-   </>
+
+    </div>
   );
 }
 

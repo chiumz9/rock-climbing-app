@@ -1,0 +1,22 @@
+#root{
+    background-color: #ffffef;
+}
+.image{
+  max-width: 50vw;
+  max-height: 80vh;
+}
+.Detail-Container{
+  text-align:center;
+}
+.Edit-Container{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+input{
+  background-color: lightgrey;
+}
+button{
+  background-color: #FFCD01;
+}
+ 
