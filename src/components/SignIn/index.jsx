@@ -1,31 +1,31 @@
-import { Button, Container, FormContainer, Label } from "./styles";
-import { Container, H1, FormContainer, Label, H3, SignUpHeader, Button, SignInput } from "./styles"
+import { SignContainer, H1Sign, H3Sign, FormContainer, SignLabel, SignUpHeader, SignButton, SignInput } from "../../styles"
 
 
 export default function SignIn({ handleEmailChange, handlePasswordChange, handleLogIn }) {
  
   return (
     <>
-      <Container>
+      <SignContainer>
       <SignUpHeader>
-          <H1>Sign In</H1>
+          <H1Sign>Sign In</H1Sign>
+          <H3Sign>Welcome Back! <br />🤠</H3Sign>
         </SignUpHeader>
         <FormContainer>
       <form>
         <div>
-         <Label> <label htmlFor='email'>Email </label></Label>
+         <SignLabel> <label htmlFor='email'>Email </label></SignLabel>
           <SignInput type='text' name="email" onChange={handleEmailChange}/>
         </div>
         <div>
-        <Label> <label htmlFor='password'>Password </label></Label>
+        <SignLabel> <label htmlFor='password'>Password </label></SignLabel>
           <SignInput type='password' name="email" onChange={handlePasswordChange}/>
         </div>
         <div>
-          <Button type='submit' value="Submit" onClick={handleLogIn}/>
+          <SignButton type='submit' value="Submit" onClick={handleLogIn}>Sign In</SignButton>
         </div>
           </form>
           </FormContainer>
-        </Container>
+        </SignContainer>
     </>
   )
 }

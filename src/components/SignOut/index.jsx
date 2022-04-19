@@ -1,4 +1,5 @@
 import React from 'react'
+import { SignContainer, H1Sign, H3Sign, FormContainer, SignLabel, SignUpHeader, SignButton, SignInput } from "../../styles"
 
 export default function SignOut({setSignedIn}) {
 
@@ -9,14 +10,20 @@ export default function SignOut({setSignedIn}) {
     localStorage.clear()
   }
   return (
-    <div>
-      <div>
-        <h1>Log Out</h1>
-
-        <form>
-          <input value='Log Out' type='submit' onClick={handleLogOut} />
+    <>
+      <SignContainer>
+        <SignUpHeader>
+          <H1Sign>Sign Out</H1Sign>
+          <H3Sign>Thanks for hanging :)</H3Sign>
+          </SignUpHeader>
+        <FormContainer>
+          <form>
+          
+              <SignButton value='Log Out' type='submit' onClick={handleLogOut}>Sign Out</SignButton>
+    
         </form>
-      </div>
-    </div>
+        </FormContainer>
+        </SignContainer>
+    </>
   )
 }

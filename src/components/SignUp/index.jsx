@@ -1,37 +1,38 @@
 import React, {useEffect, useRef} from 'react'
-import { Container, H1, FormContainer, Label, H3, SignUpHeader, Button, SignInput } from "./styles"
+import { SignContainer, H1Sign, FormContainer, SignLabel, H3Sign, SignUpHeader, SignButton, SignInput } from "../../styles"
 
 
 const SignUp = ({ handleNameChange, handleEmailChange, handlePasswordChange, handleSignUp}) => {
 
   return (
     <>
-      <Container>
+      <SignContainer>
       <SignUpHeader>
-          <H1>Sign Up</H1>
-            <H3>Join our community of climbers to get the best information and gym deals in NYC</H3>
+          <H1Sign>Sign Up</H1Sign>
+          <H3Sign>It's pretty wild that your entire life led to this moment. <br /> <br />
+            The moment you decide if you're going to get the best climbing information and gym deals in NYC. <br /> <br /> We can't decide for you, and we wouldn't want to. </H3Sign>
             </SignUpHeader>
         <FormContainer>
           <form>
             
         <div>
-          <Label><label htmlFor='name'>Name </label></Label>
+          <SignLabel><label htmlFor='name'>Name </label></SignLabel>
           <SignInput type='text' name="name" onChange={handleNameChange}/>
         </div>
         <div>
-          <Label><label htmlFor='email'>Email </label></Label>
+          <SignLabel><label htmlFor='email'>Email </label></SignLabel>
           <SignInput type='text' name="email" onChange={handleEmailChange}/>
         </div>
         <div>
-        <Label> <label htmlFor='password'>Password </label> </Label>
+        <SignLabel> <label htmlFor='password'>Password </label> </SignLabel>
          <SignInput type='password' name="email" onChange={handlePasswordChange}/>
         </div>
         <div>
-        <Button type='submit' value="Submit" onSubmit={handleSignUp}>Submit</Button>
+        <SignButton type='submit' value="Submit" onSubmit={handleSignUp}>Submit</SignButton>
         </div>
           </form>
           </FormContainer>
-      </Container>
+      </SignContainer>
       
     </>
   )
