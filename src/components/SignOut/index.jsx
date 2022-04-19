@@ -1,6 +1,6 @@
 import React from 'react'
 import { SignContainer, H1Sign, H3Sign, FormContainer, SignLabel, SignUpHeader, SignButton, SignInput } from "../../styles"
-
+import { SignOutButton } from './styles'
 export default function SignOut({setSignedIn}) {
 
   const handleLogOut = (e) => { 
@@ -19,7 +19,7 @@ export default function SignOut({setSignedIn}) {
         <FormContainer>
           <form>
           
-              <SignButton value='Log Out' type='submit' onClick={handleLogOut}>Sign Out</SignButton>
+              <SignOutButton value='Log Out' type='submit' onClick={handleLogOut}>Sign Out</SignOutButton>
     
         </form>
         </FormContainer>
