@@ -41,6 +41,14 @@ export default function GymEdit() {
       [name]: value,
     });
   };
+  const handleChange2 = (event) => {
+    const {name,value} = event.target
+    setGym({
+      ...gym,location:{
+      [name]: value,
+      }
+    });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -55,35 +63,35 @@ export default function GymEdit() {
         placeholder="full address"
         name="location.fullAddress"
         value={gym.location.fullAddress}
-        onChange={handleChange}
+        onChange={handleChange2}
       />
       Street Address:
       <input
         placeholder="street address"
         name="location.address"
         value={gym.location.address}
-        onChange={handleChange}
+        onChange={handleChange2}
       />
       City:
       <input
         placeholder="city"
         name="location.city"
         value={gym.location.city}
-        onChange={handleChange}
+        onChange={handleChange2}
       />
       State:
       <input
         placeholder="state"
         name="location.state"
         value={gym.location.state}
-        onChange={handleChange}
+        onChange={handleChange2}
       />
       Zipcode:
       <input
         placeholder="zipcode"
         name="location.zipcode"
         value={gym.location.zipcode}
-        onChange={handleChange}
+        onChange={handleChange2}
       />
       Gym Name:
       <input
