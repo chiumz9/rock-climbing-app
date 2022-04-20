@@ -91,14 +91,12 @@ const App = () => {
   // const notSignedUp = () => {
   //   setShowSignedUp(true)
   // }
-
+  let navigate = useNavigate()
   const handleSignUp = (e) => {
     e.preventDefault();
     setSignedIn(true);
     setUserName(name);
-  //  signedUp();
-
-
+    
     axios
       .post("https://rock-climbing-api.herokuapp.com/api/signup", {
         name: name,
@@ -111,6 +109,8 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       });
+      navigate("/", { replace: true })
+      window.location.reload()
   };
 
   const handleEmailChange = (e) => {
@@ -121,7 +121,6 @@ const App = () => {
     setPassword(e.target.value);
   };
 
-  let navigate = useNavigate()
   const handleLogIn = (e) => {
     e.preventDefault();
     setSignedIn(true);
@@ -153,8 +152,8 @@ const App = () => {
         <NavBar signedIn={signedIn}/>
         <Search filterGyms={filterGyms} />
       </Header>
-      <div className="Routes">
-        <Routes>
+     
+      <Routes>
           {!signedIn && <Route
             path="/"
             element={
@@ -165,9 +164,9 @@ const App = () => {
                 userName={userName}
                 signedIn={signedIn}
                 title={hasFiltered ? 'Search results' : "All Gyms"} />}
-              
-            
+      
           />} 
+          
          {!signedIn && <Route
             path="/signUp"
             element={
@@ -201,7 +200,7 @@ const App = () => {
             element={<SignOut setSignedIn={setSignedIn} setUserName={setUserName}/>}
           />
         </Routes>
-      </div>
+     
       
       <Transition in={showPanel} timeout={300}>
         {(state) => <DetailPanel gym={selectedGym} closePanel={closePanel} state={state}/>}

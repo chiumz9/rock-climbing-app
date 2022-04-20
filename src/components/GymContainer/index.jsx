@@ -41,14 +41,10 @@ const GymContainer = ({gyms, pickGym, isPanelOpen, title, userName, signedIn, is
   
   }, [isPanelOpen, prevPanelState, scroll])
 
-  const GymContainerCss={
-    "padding-top": "0",
-    "margin-top": "20px",
-    "background-color" : "#ffffef",
-  }
+
 
   return (
-  <Container style={GymContainerCss} $isPanelOpen={isPanelOpen} $top={scroll} >
+  <Container $isPanelOpen={isPanelOpen} $top={scroll} >
     <H1>Hello{signedIn && userName ? ", " + userName : null}</H1>
       <H2>{title}</H2>
     <Wrapper>
