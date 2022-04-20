@@ -19,6 +19,7 @@ export const getGym = async (id) => {
 export const createGym = async (gym) => {
   try {
     const response = await api.post('/gyms', gym);
+    return response.data
   } catch (error) {
     throw error;
   }
