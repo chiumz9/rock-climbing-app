@@ -11,6 +11,7 @@ export const Cover = styled.img`
   aspect-ratio: 2 / 3;
   width: 100%;
   margin-bottom: 16px;
+  border-radius: 25px;
 `
 
 export const Title = styled.h3`
