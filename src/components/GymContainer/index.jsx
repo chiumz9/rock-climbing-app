@@ -49,7 +49,7 @@ const GymContainer = ({gyms, pickGym, isPanelOpen, title, userName, signedIn, is
 
   return (
   <Container style={GymContainerCss} $isPanelOpen={isPanelOpen} $top={scroll} >
-      <H1>Hello {signedIn ? ", " + userName : null}</H1>     
+    <H1>Hello{signedIn && userName ? ", " + userName : null}</H1>
       <H2>{title}</H2>
     <Wrapper>
     <GymList>

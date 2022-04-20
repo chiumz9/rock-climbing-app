@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { updateGym, getGym } from '../services/gyms.js';
-
+import { SignButton } from '../../styles.js';
 export default function GymEdit() {
   let navigate = useNavigate()
   const { id } = useParams()
@@ -164,7 +164,7 @@ export default function GymEdit() {
         value={gym.url}
         onChange={handleChange}
       />
-      <button type="submit">Submit</button>
+      <SignButton type="submit">Submit</SignButton>
     </form>
   )
 }

@@ -8,7 +8,7 @@ import { Transition } from 'react-transition-group'
 import NavBar from './components/NavBar';
 import jwt_decode from "jwt-decode"
 import axios from "axios"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom"
 import SignUp from './components/SignUp'
 import SignOut from './components/SignOut';
 import SignIn from './components/SignIn';
@@ -20,7 +20,7 @@ const App = () => {
   const [gyms, setGyms] = useState([])
   const [selectedGym, setSelectedGym] = useState(null)
   const [showPanel, setShowPanel] = useState(false)
-  const [showGymContainer, setShowGymContainer] = useState(false)
+  const [showSignUp, setSignUp] = useState(true)
   const [filteredGyms, setFilteredGyms] = useState([])
   const [trigger,setTrigger] = useState(false)
   useEffect(() => {
@@ -74,11 +74,29 @@ const App = () => {
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
+<<<<<<< HEAD
+=======
+
+  // const signedUp = () => {
+  //   setShowSignedUp(false)
+  // }
+
+  // const notSignedUp = () => {
+  //   setShowSignedUp(true)
+  // }
+
+>>>>>>> f718692528ef3b5d6b50028a45f8d284cb41531f
   const handleSignUp = (e) => {
     e.preventDefault();
     setSignedIn(true);
     setUserName(name);
+<<<<<<< HEAD
     setShowGymContainer(null)
+=======
+  //  signedUp();
+
+
+>>>>>>> f718692528ef3b5d6b50028a45f8d284cb41531f
     axios
       .post("https://rock-climbing-api.herokuapp.com/api/signup", {
         name: name,
@@ -99,9 +117,15 @@ const App = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+<<<<<<< HEAD
+=======
+
+  let navigate = useNavigate()
+>>>>>>> f718692528ef3b5d6b50028a45f8d284cb41531f
   const handleLogIn = (e) => {
     e.preventDefault();
     setSignedIn(true);
+    
 
     axios
       .post("https://rock-climbing-api.herokuapp.com/api/login", {
@@ -116,6 +140,8 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       });
+    navigate("/", { replace: true })
+    window.location.reload()
   };
 
 
@@ -123,62 +149,72 @@ const App = () => {
     <div clasName="App-Background">
       <GlobalStyle />
       <Header >
+<<<<<<< HEAD
         <NavBar />
+=======
+        <NavBar signedIn={signedIn}/>
+>>>>>>> f718692528ef3b5d6b50028a45f8d284cb41531f
         <Search filterGyms={filterGyms} />
       </Header>
       <div className="Routes">
         <Routes>
+<<<<<<< HEAD
         <Route path="/create-gym" element={<CreateGym/>} />
           <Route
+=======
+          {!signedIn && <Route
+>>>>>>> f718692528ef3b5d6b50028a45f8d284cb41531f
             path="/"
             element={
-              <SignUp
-                handleNameChange={handleNameChange}
-                handleEmailChange={handleEmailChange}
-                handlePasswordChange={handlePasswordChange}
-                handleSignUp={handleSignUp}
-              />
-            }
-          />
-          <Route
+             <GymContainer
+                gyms={filteredGyms}
+                pickGym={pickGym}
+                isPanelOpen={showPanel}
+                userName={userName}
+                signedIn={signedIn}
+                title={hasFiltered ? 'Search results' : "All Gyms"} />}
+              
+            
+          />} 
+         {!signedIn && <Route
             path="/signUp"
             element={
-              <SignUp
+              <SignUp 
                 handleNameChange={handleNameChange}
                 handleEmailChange={handleEmailChange}
                 handlePasswordChange={handlePasswordChange}
                 handleSignUp={handleSignUp}
               />
             }
-          />
-          <Route
-            path="/signIn"
+          />}
+          {!signedIn && <Route
+            path={signedIn ? "/" : "/signIn"}
             element={
               <SignIn
                 handleEmailChange={handleEmailChange}
                 handlePasswordChange={handlePasswordChange}
                 handleLogIn={handleLogIn}
+
               />
             }
+<<<<<<< HEAD
           />
           <Route
+=======
+          />}
+           <Route
+>>>>>>> f718692528ef3b5d6b50028a45f8d284cb41531f
             path="/gyms"
             element={<GymContainer />}
 
           />
           <Route
             path="/signOut"
-            element={<SignOut setSignedIn={setSignedIn} />}
+            element={<SignOut setSignedIn={setSignedIn} setUserName={setUserName}/>}
           />
         </Routes>
       </div>
-      {signedIn && <GymContainer
-        gyms={filteredGyms}
-        pickGym={pickGym}
-        isPanelOpen={showPanel}
-        userName={userName}
-        signedIn={signedIn}
-        title={hasFiltered ? 'Search results' : "All Gyms"} />}
+      
       <Transition in={showPanel} timeout={300}>
         {(state) => <DetailPanel gym={selectedGym} closePanel={closePanel} state={state} />}
       </Transition>
