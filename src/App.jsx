@@ -9,9 +9,9 @@ import NavBar from './components/NavBar';
 import jwt_decode from "jwt-decode"
 import axios from "axios"
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom"
-import SignUp from './components/SignUp'
-import SignOut from './components/SignOut';
-import SignIn from './components/SignIn';
+import SignUp from './components/SignUp/index.jsx'
+import SignOut from './components/SignOut/index.jsx';
+import SignIn from './components/SignIn/index.jsx';
 import GymEdit from './cruds/screens/GymEdit.jsx'
 import "./App.css"
 
@@ -79,19 +79,13 @@ const App = () => {
   const [userName, setUserName] = useState("");
 
   const [name, setName] = useState("");
-
+  
+  let navigate = useNavigate()
+ 
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
-
-  // const signedUp = () => {
-  //   setShowSignedUp(false)
-  // }
-
-  // const notSignedUp = () => {
-  //   setShowSignedUp(true)
-  // }
-  let navigate = useNavigate()
+  
   const handleSignUp = (e) => {
     e.preventDefault();
     setSignedIn(true);
@@ -109,8 +103,7 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       });
-      navigate("/", { replace: true })
-      window.location.reload()
+    navigate("/gyms")
   };
 
   const handleEmailChange = (e) => {
@@ -122,10 +115,9 @@ const App = () => {
   };
 
   const handleLogIn = (e) => {
+    console.log("hi")
     e.preventDefault();
     setSignedIn(true);
-    
-
     axios
       .post("https://rock-climbing-api.herokuapp.com/api/login", {
         email: email,
@@ -139,8 +131,7 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       });
-    navigate("/", { replace: true })
-    window.location.reload()
+    navigate("/gyms")
   };
  
 
@@ -149,13 +140,13 @@ const App = () => {
     <div clasName="App-Background">
       <GlobalStyle />
       <Header >
-        <NavBar signedIn={signedIn}/>
+        <NavBar />
         <Search filterGyms={filterGyms} />
       </Header>
      
       <Routes>
-          {!signedIn && <Route
-            path="/"
+          <Route
+            path="/gyms"
             element={
              <GymContainer
                 gyms={filteredGyms}
@@ -163,11 +154,11 @@ const App = () => {
                 isPanelOpen={showPanel}
                 userName={userName}
                 signedIn={signedIn}
-                title={hasFiltered ? 'Search results' : "All Gyms"} />}
-      
-          />} 
+                title={hasFiltered ? 'Search results' : "All Gyms"} />
+            }
+           />
           
-         {!signedIn && <Route
+          <Route
             path="/signUp"
             element={
               <SignUp 
@@ -177,9 +168,9 @@ const App = () => {
                 handleSignUp={handleSignUp}
               />
             }
-          />}
-          {!signedIn && <Route
-            path={signedIn ? "/" : "/signIn"}
+          />
+          <Route
+            path="/signIn"
             element={
               <SignIn
                 handleEmailChange={handleEmailChange}
@@ -188,13 +179,11 @@ const App = () => {
 
               />
             }
-          />}
-           <Route
+          />
+           {/* <Route
             path="/gyms"
             element={<GymContainer />}
-              
-            
-          />
+          /> */}
           <Route
             path="/signOut"
             element={<SignOut setSignedIn={setSignedIn} setUserName={setUserName}/>}
