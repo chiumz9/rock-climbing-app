@@ -2,19 +2,21 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { updateGym, getGym } from '../services/gyms.js';
 import { SignButton } from '../../styles.js';
+
 export default function GymEdit() {
   let navigate = useNavigate()
-  const {id} = useParams()
+  const { id } = useParams()
 
   const [gym, setGym] = useState({
     name: "",
-    location: 
-      { fullAddress: "",
-        address: "",
-        city: "",
-        state: "",
-        zipcode: ""
-      },
+    location:
+    {
+      fullAddress: "",
+      address: "",
+      city: "",
+      state: "",
+      zipcode: ""
+    },
     phoneNumber: "",
     image: "",
     oneDayPass: "",
@@ -27,7 +29,7 @@ export default function GymEdit() {
   });
   useEffect(() => {
     const fetchGym = async () => {
-      let oneGym  = await getGym(id)
+      let oneGym = await getGym(id)
       setGym(oneGym)
     }
 
@@ -35,25 +37,26 @@ export default function GymEdit() {
   }, [id])
 
   const handleChange = (event) => {
-    const {name,value} = event.target
+    const { name, value } = event.target
     setGym({
       ...gym,
       [name]: value,
     });
   };
   const handleChange2 = (event) => {
-    const {name,value} = event.target
+    console.log(event.target.value)
+    const { name, value } = event.target
     setGym({
-      ...gym,location:{
-      [name]: value,
+      ...gym, location: {
+        [name]: value,
       }
     });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    await updateGym(gym)
-    navigate('/gyms', {replace:true})
+    await updateGym(id, gym)
+    navigate('/gyms', { replace: true })
   }
 
   return (
@@ -61,35 +64,35 @@ export default function GymEdit() {
       Full Address:
       <input
         placeholder="full address"
-        name="location.fullAddress"
+        name="fullAddress"
         value={gym.location.fullAddress}
         onChange={handleChange2}
       />
       Street Address:
       <input
         placeholder="street address"
-        name="location.address"
+        name="address"
         value={gym.location.address}
         onChange={handleChange2}
       />
       City:
       <input
         placeholder="city"
-        name="location.city"
+        name="city"
         value={gym.location.city}
         onChange={handleChange2}
       />
       State:
       <input
         placeholder="state"
-        name="location.state"
+        name="state"
         value={gym.location.state}
         onChange={handleChange2}
       />
       Zipcode:
       <input
         placeholder="zipcode"
-        name="location.zipcode"
+        name="zipcode"
         value={gym.location.zipcode}
         onChange={handleChange2}
       />
