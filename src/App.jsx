@@ -151,17 +151,19 @@ const App = () => {
       </Header>
       <div className="Routes">
         <Routes>
-          {/* {!signedIn && <Route
+          {!signedIn && <Route
             path="/"
             element={
-              <SignUp
-                handleNameChange={handleNameChange}
-                handleEmailChange={handleEmailChange}
-                handlePasswordChange={handlePasswordChange}
-                handleSignUp={handleSignUp}
-              />
-            }
-          />} */}
+             <GymContainer
+                gyms={filteredGyms}
+                pickGym={pickGym}
+                isPanelOpen={showPanel}
+                userName={userName}
+                signedIn={signedIn}
+                title={hasFiltered ? 'Search results' : "All Gyms"} />}
+              
+            
+          />} 
          {!signedIn && <Route
             path="/signUp"
             element={
@@ -196,13 +198,7 @@ const App = () => {
           />
         </Routes>
       </div>
-      {signedIn && <GymContainer
-        gyms={filteredGyms}
-        pickGym={pickGym}
-        isPanelOpen={showPanel}
-        userName={userName}
-        signedIn={signedIn}
-        title={hasFiltered ? 'Search results' : "All Gyms"} />}
+      
       <Transition in={showPanel} timeout={300}>
         {(state) => <DetailPanel gym={selectedGym} closePanel={closePanel} state={state}/>}
       </Transition>
