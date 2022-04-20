@@ -22,7 +22,7 @@ const App = () => {
   const [showPanel, setShowPanel] = useState(false)
   const [showSignUp, setSignUp] = useState(true)
   const [filteredGyms, setFilteredGyms] = useState([])
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,7 +50,7 @@ const App = () => {
     setShowPanel(false)
   }
 
- 
+
 
   const filterGyms = (searchTerm) => {
     //Convert the array and the input to lowercase & string to make non-case-sensitive
@@ -65,7 +65,7 @@ const App = () => {
       setFilteredGyms(
         gyms.filter(
           (gym) => stringSearch(gym.name, searchTerm) || stringSearch(gym.location.city, searchTerm || stringSearch(gym.autoBelay, searchTerm))
-      )
+        )
       )
     }
   }
@@ -80,19 +80,19 @@ const App = () => {
   const [userName, setUserName] = useState("");
 
   const [name, setName] = useState("");
-  
+
   let navigate = useNavigate()
- 
+
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
-  
+
   const handleSignUp = (e) => {
     e.preventDefault();
     setSignedIn(true);
     setUserName(name);
     console.log("hi")
-    
+
     axios
       .post("https://rock-climbing-api.herokuapp.com/api/signup", {
         name: name,
@@ -118,7 +118,6 @@ const App = () => {
 
   const handleLogIn = (e) => {
     e.preventDefault();
-    setSignedIn(true);
     axios
       .post("https://rock-climbing-api.herokuapp.com/api/login", {
         email: email,
@@ -132,11 +131,11 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       });
-    navigate("/gyms")
+    if (localStorage.token ) { navigate("/gyms"); setSignedIn(true) }
   };
- 
 
-  
+
+
   return (
     <div clasName="App-Background">
       <GlobalStyle />
@@ -144,54 +143,55 @@ const App = () => {
         <NavBar />
         <Search filterGyms={filterGyms} />
       </Header>
-     
-      <Routes>
-          <Route
-            path="/gyms"
-            element={
-             <GymContainer
-                gyms={filteredGyms}
-                pickGym={pickGym}
-                isPanelOpen={showPanel}
-                userName={userName}
-                signedIn={signedIn}
-                title={hasFiltered ? 'Search results' : "All Gyms"} />
-            }
-           />
-          
-          <Route
-            path="/signUp"
-            element={
-              <SignUp 
-                handleNameChange={handleNameChange}
-                handleEmailChange={handleEmailChange}
-                handlePasswordChange={handlePasswordChange}
-                handleSignUp={handleSignUp}
-              />
-            }
-          />
-          <Route
-            path="/signIn"
-            element={
-              <SignIn
-                handleEmailChange={handleEmailChange}
-                handlePasswordChange={handlePasswordChange}
-                handleLogIn={handleLogIn}
 
-              />
-            }
-          />
-           {/* <Route
+      <Routes>
+
+        { signedIn ? <Route 
+          path="/gyms"
+          element={
+            <GymContainer
+              gyms={filteredGyms}
+              pickGym={pickGym}
+              isPanelOpen={showPanel}
+              userName={userName}
+              signedIn={signedIn}
+              title={hasFiltered ? 'Search results' : "All Gyms"} />
+          }
+        /> : null }
+
+        <Route
+          path="/signUp"
+          element={
+            <SignUp 
+              handleNameChange={handleNameChange}
+              handleEmailChange={handleEmailChange}
+              handlePasswordChange={handlePasswordChange}
+              handleSignUp={handleSignUp}
+            />
+          }
+        />
+        <Route
+          path="/signIn"
+          element={
+            <SignIn
+              handleEmailChange={handleEmailChange}
+              handlePasswordChange={handlePasswordChange}
+              handleLogIn={handleLogIn}
+
+            />
+          }
+        />
+        {/* <Route
             path="/gyms"
             element={<GymContainer />}
           /> */}
-          <Route
-            path="/signOut"
-            element={<SignOut setSignedIn={setSignedIn} setUserName={setUserName}/>}
-          />
-        </Routes>
-     
-      
+        <Route
+          path="/signOut"
+          element={<SignOut setSignedIn={setSignedIn} setUserName={setUserName}/>}
+        />
+      </Routes>
+
+
       <Transition in={showPanel} timeout={300}>
         {(state) => <DetailPanel gym={selectedGym} closePanel={closePanel} state={state}/>}
       </Transition>
