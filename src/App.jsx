@@ -26,6 +26,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        //const response = await fetch('http://localhost:3000/api/gyms')
         const response = await fetch('https://rock-climbing-api.herokuapp.com/api/gyms')
 
         const gyms = await response.json()
