@@ -145,6 +145,17 @@ const App = () => {
       </Header>
 
       <Routes>
+      <Route
+          path="/"
+          element={
+            <SignUp 
+              handleNameChange={handleNameChange}
+              handleEmailChange={handleEmailChange}
+              handlePasswordChange={handlePasswordChange}
+              handleSignUp={handleSignUp}
+            />
+          }
+        />
 
         { signedIn ? <Route 
           path="/gyms"
