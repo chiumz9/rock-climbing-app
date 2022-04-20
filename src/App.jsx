@@ -198,7 +198,7 @@ const App = () => {
           />
           <Route
             path="/signOut"
-            element={<SignOut setSignedIn={setSignedIn} />}
+            element={<SignOut setSignedIn={setSignedIn} setUserName={setUserName}/>}
           />
         </Routes>
       </div>

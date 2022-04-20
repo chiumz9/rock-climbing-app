@@ -1,11 +1,12 @@
 import React from 'react'
 import { SignContainer, H1Sign, H3Sign, FormContainer, SignLabel, SignUpHeader, SignButton, SignInput } from "../../styles"
 import { SignOutButton } from './styles'
-export default function SignOut({setSignedIn}) {
+export default function SignOut({setSignedIn, setUserName}) {
 
   const handleLogOut = (e) => { 
     e.preventDefault()
     setSignedIn(false)
+    setUserName('')
     //want to set logged out status here
     localStorage.clear()
   }
