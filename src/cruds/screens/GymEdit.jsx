@@ -4,17 +4,18 @@ import { updateGym, getGym } from '../services/gyms.js';
 
 export default function GymEdit() {
   let navigate = useNavigate()
-  const {id} = useParams()
+  const { id } = useParams()
 
   const [gym, setGym] = useState({
     name: "",
-    location: 
-      { fullAddress: "",
-        address: "",
-        city: "",
-        state: "",
-        zipcode: ""
-      },
+    location:
+    {
+      fullAddress: "",
+      address: "",
+      city: "",
+      state: "",
+      zipcode: ""
+    },
     phoneNumber: "",
     image: "",
     oneDayPass: "",
@@ -27,7 +28,7 @@ export default function GymEdit() {
   });
   useEffect(() => {
     const fetchGym = async () => {
-      let oneGym  = await getGym(id)
+      let oneGym = await getGym(id)
       setGym(oneGym)
     }
 
@@ -35,25 +36,25 @@ export default function GymEdit() {
   }, [id])
 
   const handleChange = (event) => {
-    const {name,value} = event.target
+    const { name, value } = event.target
     setGym({
       ...gym,
       [name]: value,
     });
   };
   const handleChange2 = (event) => {
-    const {name,value} = event.target
+    const { name, value } = event.target
     setGym({
-      ...gym,location:{
-      [name]: value,
+      ...gym, location: {
+        [name]: value,
       }
     });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    await updateGym(gym)
-    navigate('/gyms', {replace:true})
+    await updateGym(id, gym)
+    navigate('/SignIn', { replace: true })
   }
 
   return (

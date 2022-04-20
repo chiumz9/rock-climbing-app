@@ -35,10 +35,11 @@ export default function GymCreate() {
   const handleSubmit = async (event) => {
     event.preventDefault()
     await createGym(gym)
-    navigate('/gyms', {replace:true})
+    navigate('/SignIn', {replace:true})
   }
 
   return (
+    <div clasName="Create-Container">
     <form className="Create-Container" onSubmit={handleSubmit}>
       <h1>New Gym</h1>
       <input
@@ -103,5 +104,6 @@ export default function GymCreate() {
       />
       <button type="submit">Submit</button>
     </form>
+      </div>
   )
 }

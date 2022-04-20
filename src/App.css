@@ -1,4 +1,31 @@
-
+.image{
+  max-width: 50vw;
+  max-height: 80vh;
+}
+.Create-Container{
+  padding-top: 400px;
+}
+.Detail-Container{
+  text-align:center;
+}
+.Edit-Container{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+input{
+  background-color: #b37a4c;
+  padding: 4px;
+  gap: 10px 0;
+  box-sizing: border-box;
+  border: 2px solid black;
+  margin-bottom: 5px;
+  
+}
+button{
+  background-color: red;
+}
+ 
 .Edit-Container{
   display: flex;
   flex-direction: column;

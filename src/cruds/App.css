@@ -2,6 +2,9 @@
   max-width: 50vw;
   max-height: 80vh;
 }
+.Create-Container{
+  margin-top: 400px;
+}
 .Detail-Container{
   text-align:center;
 }

@@ -12,7 +12,7 @@ function App() {
         <Route path="/gyms" element={<Gyms/>} />
         <Route path="/create-gym" element={<CreateGym/>} />
         <Route path="/gyms/:id" element={<GymDetail/>} />
-        <Route path="/gyms/:id/edit" element={<GymEdit/>}/>
+        <Route path="/gyms/:id/edit" element={<GymEdit setTrigger={setTrigger} trigger={trigger}/>}/>
       </Routes>
     </div>
   );

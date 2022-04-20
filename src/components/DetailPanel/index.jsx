@@ -1,12 +1,12 @@
-import React, {useEffect, useRef} from 'react'
-import { Panel, P, CloseWrapper, BG, URL, ButtonWrapper} from './styles'
-import {Close, Button} from '../../styles'
+import React, { useEffect, useRef } from 'react'
+import { Panel, P, CloseWrapper, BG, URL, ButtonWrapper } from './styles'
+import { Close, Button } from '../../styles'
 import Gym from '../Gym'
-import { deleteGym, getGym } from '../../cruds/services/gyms.js';
+import { deleteGym, updateGym, getGym } from '../../cruds/services/gyms.js';
 import { Link, useParams, useNavigate, Routes, Route } from "react-router-dom";
 import GymEdit from '../../cruds/screens/GymEdit.jsx'
 
-const DetailPanel = ({ gym, closePanel, state }) => {
+const DetailPanel = ({ gym, closePanel, state ,setTrigger}) => {
   const panelEl = useRef(null)
   const prevGym = useRef(null)
   let navigate = useNavigate()
@@ -21,14 +21,14 @@ const DetailPanel = ({ gym, closePanel, state }) => {
 
   return (
     <>
-      <BG onClick={closePanel} $state={state}/>
+      <BG onClick={closePanel} $state={state} />
       <Panel $state={state} ref={panelEl}>
         <CloseWrapper onClick={closePanel} $state={state}>
           <Close />
         </CloseWrapper>
         {gym && (
           <>
-            <Gym gym={gym} isLarge={true}/>
+            <Gym gym={gym} isLarge={true} />
             <P>{gym.description}</P>
             <P>Contact: {gym.phoneNumber}</P>
             <P>Day-pass: $ {gym.oneDayPass}</P>
@@ -37,20 +37,19 @@ const DetailPanel = ({ gym, closePanel, state }) => {
             <P>Auto Belay? {gym.autoBelay ? "✅" : "🚫"}</P>
             <P>Bouldering? {gym.bouldering ? "✅" : "🚫"}</P>
             <P>Top Roping? {gym.topRoping ? "✅" : "🚫"}</P>
-            <P><a style={{textDecoration: 'none', color: "#FFCD01"}}
+            <P><a style={{ textDecoration: 'none', color: "#FFCD01" }}
               href={gym.url}>Gym website: <URL>{gym.url}</URL></a></P>
             <P>{gym.location?.fullAddress}</P>
             <Routes>
-            <Route path="/gyms/:id/edit" element={<GymEdit/>}/>
-              </Routes>
+              <Route path="/gyms/:id/edit" element={<GymEdit setTrigger={setTrigger}/>} />
+            </Routes>
             <ButtonWrapper>
               <Link to={`/gyms/${gym._id}/edit`}><Button>Edit Gym</Button></Link>
-            
-            <Button onClick={() => {
-              deleteGym(gym._id)
-              navigate("/gyms", { replace: true })
+              <Button onClick={() => {
+                deleteGym(gym._id)
+                navigate("/", { replace: true })
               }}>Delete Gym</Button>
-              </ButtonWrapper>
+            </ButtonWrapper>
           </>
         )}
       </Panel>

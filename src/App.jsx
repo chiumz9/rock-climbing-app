@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import GymContainer from './components/GymContainer';
 import Header from './components/Header'
 import { GlobalStyle } from './styles';
@@ -13,8 +13,8 @@ import SignUp from './components/SignUp'
 import SignOut from './components/SignOut';
 import SignIn from './components/SignIn';
 import GymEdit from './cruds/screens/GymEdit.jsx'
+import CreateGym from './cruds/screens/GymCreate.jsx'
 import "./App.css"
-
 
 const App = () => {
   const [gyms, setGyms] = useState([])
@@ -22,41 +22,35 @@ const App = () => {
   const [showPanel, setShowPanel] = useState(false)
   const [showGymContainer, setShowGymContainer] = useState(false)
   const [filteredGyms, setFilteredGyms] = useState([])
-  
+  const [trigger,setTrigger] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://rock-climbing-api.herokuapp.com/api/gyms')
+        //const response = await fetch('https://rock-climbing-api.herokuapp.com/api/gyms')
+        const response = await fetch('http://localhost:3000/api/gyms')
 
         const gyms = await response.json()
-        setGyms(gyms)    
+        setGyms(gyms)
         //need to set filteredGyms or else page will render empty
         setFilteredGyms(gyms)
       } catch (errors) {
-        console.error(errors, "error" )
+        console.error(errors, "error")
       }
     }
-
     fetchData()
-  }, [])
-
+  }, [trigger])
   const pickGym = (gym) => {
     setSelectedGym(gym)
     setShowPanel(true)
   }
-
-  const closePanel = () => { 
+  const closePanel = () => {
     setShowPanel(false)
   }
 
- 
-
   const filterGyms = (searchTerm) => {
     //Convert the array and the input to lowercase & string to make non-case-sensitive
-    const stringSearch = (gymAttribute, searchTerm) => 
+    const stringSearch = (gymAttribute, searchTerm) =>
       gymAttribute.toLowerCase().includes(searchTerm.toLowerCase())
-
-
     //if searchTerm returns falsey value, display all gyms
     if (!searchTerm) {
       setFilteredGyms(gyms)
@@ -64,33 +58,27 @@ const App = () => {
       setFilteredGyms(
         gyms.filter(
           (gym) => stringSearch(gym.name, searchTerm) || stringSearch(gym.location.city, searchTerm || stringSearch(gym.autoBelay, searchTerm))
-      )
+        )
       )
     }
   }
   // Conditionally Render Title for Gym Container
   // Compares the length of the filteredGyms array and the gyms array... if they do not === one another, filter has happened
   const hasFiltered = filteredGyms.length !== gyms.length
-
   //sign in process
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signedIn, setSignedIn] = useState(false);
   const [userName, setUserName] = useState("");
-
   const [name, setName] = useState("");
-
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
-
   const handleSignUp = (e) => {
     e.preventDefault();
     setSignedIn(true);
     setUserName(name);
     setShowGymContainer(null)
-
-
     axios
       .post("https://rock-climbing-api.herokuapp.com/api/signup", {
         name: name,
@@ -108,11 +96,9 @@ const App = () => {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-
   const handleLogIn = (e) => {
     e.preventDefault();
     setSignedIn(true);
@@ -131,19 +117,19 @@ const App = () => {
         console.log(err);
       });
   };
- 
 
-  
+
   return (
     <div clasName="App-Background">
       <GlobalStyle />
       <Header >
-        <NavBar/>
+        <NavBar />
         <Search filterGyms={filterGyms} />
       </Header>
       <div className="Routes">
         <Routes>
-        <Route
+        <Route path="/create-gym" element={<CreateGym/>} />
+          <Route
             path="/"
             element={
               <SignUp
@@ -175,11 +161,10 @@ const App = () => {
               />
             }
           />
-           <Route
+          <Route
             path="/gyms"
             element={<GymContainer />}
-              
-            
+
           />
           <Route
             path="/signOut"
@@ -195,9 +180,8 @@ const App = () => {
         signedIn={signedIn}
         title={hasFiltered ? 'Search results' : "All Gyms"} />}
       <Transition in={showPanel} timeout={300}>
-        {(state) => <DetailPanel gym={selectedGym} closePanel={closePanel} state={state}/>}
+        {(state) => <DetailPanel gym={selectedGym} closePanel={closePanel} state={state} />}
       </Transition>
-
     </div>
   );
 }
