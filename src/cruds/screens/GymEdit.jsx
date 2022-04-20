@@ -56,7 +56,9 @@ export default function GymEdit() {
   const handleSubmit = async (event) => {
     event.preventDefault()
     await updateGym(id, gym)
-    navigate('/gyms', { replace: true })
+    navigate('/gyms', {return: true})
+
+
   }
 
   return (
