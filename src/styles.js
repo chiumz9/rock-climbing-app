@@ -68,7 +68,7 @@ export const Button = styled.button`
 
 export const SignContainer = styled.div`
 background-color: #fffff0;
-padding: 160px 40px;
+padding: 160px 0px;
 height: 100vh;
 width: 100vw;
 z-index: 4;
@@ -118,6 +118,7 @@ export const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
+
 
 `
 export const SignLabel = styled.div`
