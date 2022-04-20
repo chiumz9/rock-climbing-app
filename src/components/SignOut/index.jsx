@@ -3,7 +3,7 @@ import { SignContainer, H1Sign, H3Sign, FormContainer, SignLabel, SignUpHeader, 
 import { SignOutButton } from './styles'
 export default function SignOut({setSignedIn, setUserName}) {
 
-  const handleLogOut = (e) => { 
+  const handleLogOut = (e) => {
     e.preventDefault()
     setSignedIn(false)
     setUserName('')

@@ -6,6 +6,7 @@ import Gym from '../Gym'
 const GymContainer = ({gyms, pickGym, isPanelOpen, title, userName, signedIn, isSignUpOpen}) => {
   const [scroll, setScroll] = useState(0);
   const prevPanelState = useRef(false)
+  console.log(userName)
 
   // The doubounce function delays invoking a specificed function, until after a certain amount of time has passes. Which is specificied as a 2nd argument in milliseconds
   // Structing the debounce as a callback
