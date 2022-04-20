@@ -151,7 +151,7 @@ const App = () => {
       </Header>
       <div className="Routes">
         <Routes>
-        <Route
+          {/* {!signedIn && <Route
             path="/"
             element={
               <SignUp
@@ -161,20 +161,20 @@ const App = () => {
                 handleSignUp={handleSignUp}
               />
             }
-          />
-          <Route
+          />} */}
+         {!signedIn && <Route
             path="/signUp"
             element={
-              <SignUp
+              <SignUp 
                 handleNameChange={handleNameChange}
                 handleEmailChange={handleEmailChange}
                 handlePasswordChange={handlePasswordChange}
                 handleSignUp={handleSignUp}
               />
             }
-          />
-          <Route
-            path="/signIn"
+          />}
+          {!signedIn && <Route
+            path={signedIn ? "/" : "/signIn"}
             element={
               <SignIn
                 handleEmailChange={handleEmailChange}
@@ -183,7 +183,7 @@ const App = () => {
 
               />
             }
-          />
+          />}
            <Route
             path="/gyms"
             element={<GymContainer />}
