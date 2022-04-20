@@ -28,7 +28,7 @@ const SignUp = ({ handleNameChange, handleEmailChange, handlePasswordChange, han
          <SignInput type='password' name="email" onChange={handlePasswordChange}/>
         </div>
         <div>
-        <SignButton type='submit' value="Submit" onSubmit={handleSignUp}>Submit</SignButton>
+        <SignButton type='submit' value="Submit" onClick={handleSignUp}>Submit</SignButton>
         </div>
           </form>
           </FormContainer>
