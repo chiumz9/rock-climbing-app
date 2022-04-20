@@ -90,6 +90,7 @@ const App = () => {
     e.preventDefault();
     setSignedIn(true);
     setUserName(name);
+    console.log("hi")
     
     axios
       .post("https://rock-climbing-api.herokuapp.com/api/signup", {
@@ -115,7 +116,6 @@ const App = () => {
   };
 
   const handleLogIn = (e) => {
-    console.log("hi")
     e.preventDefault();
     setSignedIn(true);
     axios
