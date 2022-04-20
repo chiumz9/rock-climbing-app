@@ -8,7 +8,7 @@ import { Transition } from 'react-transition-group'
 import NavBar from './components/NavBar';
 import jwt_decode from "jwt-decode"
 import axios from "axios"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom"
 import SignUp from './components/SignUp'
 import SignOut from './components/SignOut';
 import SignIn from './components/SignIn';
@@ -121,9 +121,11 @@ const App = () => {
     setPassword(e.target.value);
   };
 
+  let navigate = useNavigate()
   const handleLogIn = (e) => {
     e.preventDefault();
     setSignedIn(true);
+    
 
     axios
       .post("https://rock-climbing-api.herokuapp.com/api/login", {
@@ -138,6 +140,8 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       });
+    navigate("/", { replace: true })
+    window.location.reload()
   };
  
 
@@ -146,7 +150,7 @@ const App = () => {
     <div clasName="App-Background">
       <GlobalStyle />
       <Header >
-        <NavBar/>
+        <NavBar signedIn={signedIn}/>
         <Search filterGyms={filterGyms} />
       </Header>
       <div className="Routes">
