@@ -132,7 +132,7 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       });
-    navigate("/gyms")
+    if (localStorage.token) { navigate("/gyms") }
   };
  
 
